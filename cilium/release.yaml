@@ -10,7 +10,8 @@ spec:
       chart: cilium
       sourceRef:
         kind: HelmRepository
-        name: cilium
+        name: cilium-helm-repo
+        namespace: cilium
   interval: 50m
   install:
     remediation:

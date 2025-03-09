@@ -1,17 +1,17 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: cilium
-  namespace: cilium
+  name: traefik
+  namespace: traefik
 spec:
-  releaseName: cilium
+  releaseName: traefik
   chart:
     spec:
-      chart: cilium
+      chart: traefik
       sourceRef:
         kind: HelmRepository
-        name: cilium-helm-repo
-        namespace: cilium
+        name: traefik-helm-repo
+        namespace: traefik
   interval: 50m
   install:
     remediation:

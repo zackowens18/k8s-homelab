@@ -1,0 +1,3 @@
+cluster-setup/**/controlplane.yaml
+cluster-setup/**/worker.yaml
+cluster-setup/**/talosconfig

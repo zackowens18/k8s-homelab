@@ -1,4 +1,4 @@
-# k8s-homelab-gitops-systems
+# k8s-homelab
 
 ## What this repo does
 

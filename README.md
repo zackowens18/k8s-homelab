@@ -4,6 +4,14 @@
 
 This repo is all of the giops for my internal kubernetes home lab using talos linux. This repo is consumed by Flux CD to install/upgrade Flux and all other dependencies for my cluster.
 
+# Talos scripts
+
+Talos scripts are located at  `/scripts`. All scripts are meant to be ran out of the root of this Git Repository. All scripts can be ran with --help flag to get full usage of each script. 
+
+The first script intialize cluster called `intialize_cluster.sh`. This script create the configuration files like talosconfig, kubeconfig, and the full controlplane.yaml files. These files need to be stored securely and not checked into git. 
+
+TODO - patch_cluster.sh
+TODO - destroy_cluster.sh
 ## Pre requisites
 
 - A valid kubeconfig to setup a cluster on this

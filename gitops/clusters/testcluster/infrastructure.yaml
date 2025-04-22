@@ -10,6 +10,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: .gitops/infrastructure/controllers
+  path: ./gitops/infrastructure/controllers
   prune: true
   wait: true

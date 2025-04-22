@@ -10,7 +10,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: prometheus-stack
-  namespace: prometheus-stack
+  namespace: observability
 spec:
   interval: 24h
   url: https://kubernetes.github.io/prometheus-stack

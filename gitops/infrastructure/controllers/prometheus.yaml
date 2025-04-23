@@ -31,9 +31,6 @@ spec:
         name: prometheus-stack
         namespace: observability
       interval: 12h
-  # values:
-  #   controller:
-  #     service:
-  #       type: "NodePort"
-  #   admissionWebhooks:
-  #     enabled: false
+  values:
+    crds:
+      enabled: true

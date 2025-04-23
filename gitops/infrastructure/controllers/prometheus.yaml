@@ -5,6 +5,7 @@ metadata:
   name: observability
   labels:
     toolkit.fluxcd.io/tenant: mytenant
+    pod-security.kubernetes.io/enforce: privileged
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository

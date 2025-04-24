@@ -4,4 +4,4 @@ metadata:
   name: "test-pool"
 spec:
   blocks:
-  - cidr: "	10.1.1.1/24"
+  - cidr: "10.1.1.1/24"

@@ -1,6 +1,5 @@
 #!/bin/sh
 set -e  # Exit on errors
-
 # Default values
 cluster_folder_path=""
 cluster_endpoint=""
@@ -62,7 +61,7 @@ cluster_folder_path=$(realpath $cluster_folder_path)
 talos_setup() {
   for path in "$cluster_folder_path/patches" "$cluster_folder_path/controlplane.yaml" "$cluster_folder_path/talosconfig"; do
     if [ ! -e "$path" ]; then
-      echo "Required files missing. Creating a new cluster..."
+      echo "Required files missing for $path. Creating a new cluster..."
       intialize_talos_cluster "$@"
     fi
   done
@@ -71,20 +70,30 @@ talos_setup() {
   mycluster=$(basename $cluster_folder_path)
   cd $cluster_folder_path 
   echo "Applying Confg to Nodes: $nodes"
-  talosctl machineconfig patch controlplane.yaml --patch @./patches/controlplane-patch.yaml -o controlplane.yaml 
-  talosctl apply-config --insecure --nodes $nodes --file ./controlplane.yaml
-  sleep 120s
-  echo "Bootstrapping Node by endpoint $endpoint_ip"
-  talos_path=$(realpath ./talosconfig)
-
   talosctl config merge ./talosconfig
   talosctl config context $mycluster
-  talosctl bootstrap --nodes $nodes --endpoints $endpoint_ip 
+  talosctl machineconfig patch controlplane.yaml --patch @./patches/controlplane-patch.yaml -o controlplane.yaml 
+  # TODO - Handle insecure vs secure 
+  sleep 180s
+  for node in ${nodes//,/ }; do
+    talosctl apply-config --insecure --nodes $node --file ./controlplane.yaml --talos-config $cluster_folder_path/talosconfig
+  done
+  #talosctl apply-config --insecure --nodes $nodes --file ./controlplane.yaml --talos-config $cluster_folder_path/talosconfig
+  echo "Bootstrapping Node by endpoint $endpoint_ip"
+  talos_path=$(realpath ./talosconfig)
+  sleep 180s
+
+  for node in ${nodes//,/ }; do
+    talosctl bootstrap --nodes $nodes --endpoints $cluster_endpoint --talos-config $cluster_folder_path/talosconfig
+  done
+  #talosctl bootstrap --nodes $nodes --endpoints $cluster_endpoint --talos-config $cluster_folder_path/talosconfig
   echo "Waiting for $nodes to bootstrap then retrieving kubconfig"
-  sleep 120s
+  sleep 180s
   echo "nodes $nodes , $"
-  talosctl kubeconfig kubeconfig --nodes $nodes --endpoints $endpoint_ip
+  talosctl kubeconfig kubeconfig --nodes $nodes --endpoints $endpoint_ip --talos-config $cluster_folder_path/talosconfig
   echo "kubeconfig can be found at $(pwd)/kubeconfig"
+  echo "Installing Cilium:"
+  $original_path/setup_cilium.sh -k8sServiceHost $endpoint_ip
   cd $original_path
 }
 

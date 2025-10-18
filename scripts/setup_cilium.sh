@@ -12,4 +12,4 @@ helm install cilium cilium/cilium \
   --set cgroup.hostRoot=/sys/fs/cgroup \
   --set l2announcements.enabled=true \
   --set k8sServiceHost=localhost \
-  --set k8sServicePort=6443
+  --set k8sServicePort=7445

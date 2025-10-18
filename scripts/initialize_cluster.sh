@@ -73,22 +73,21 @@ talos_setup() {
   talosctl config merge ./talosconfig
   talosctl config context $mycluster
   talosctl machineconfig patch controlplane.yaml --patch @./patches/controlplane-patch.yaml -o controlplane.yaml 
-  # TODO - Handle insecure vs secure 
+
   sleep 180s
   for node in ${nodes//,/ }; do
     talosctl apply-config --insecure --nodes $node --file ./controlplane.yaml --talos-config $cluster_folder_path/talosconfig
   done
   #talosctl apply-config --insecure --nodes $nodes --file ./controlplane.yaml --talos-config $cluster_folder_path/talosconfig
+
   echo "Bootstrapping Node by endpoint $endpoint_ip"
   talos_path=$(realpath ./talosconfig)
-  sleep 180s
-
-  for node in ${nodes//,/ }; do
-    talosctl bootstrap --nodes $nodes --endpoints $cluster_endpoint --talos-config $cluster_folder_path/talosconfig
-  done
+  
+  talosctl bootstrap --nodes $(echo "$nodes" | cut -d',' -f1) --endpoints $cluster_endpoint --talos-config $cluster_folder_path/talosconfig
+  
   #talosctl bootstrap --nodes $nodes --endpoints $cluster_endpoint --talos-config $cluster_folder_path/talosconfig
   echo "Waiting for $nodes to bootstrap then retrieving kubconfig"
-  sleep 180s
+  sleep 300s
   echo "nodes $nodes , $"
   talosctl kubeconfig kubeconfig --nodes $nodes --endpoints $endpoint_ip --talos-config $cluster_folder_path/talosconfig
   echo "kubeconfig can be found at $(pwd)/kubeconfig"

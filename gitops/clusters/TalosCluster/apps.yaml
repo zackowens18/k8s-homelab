@@ -15,7 +15,7 @@ spec:
     - name: infrastructure
   sourceRef:
     kind: GitRepository
-    name: hello-world
+    name: flux-system
   path: ./gitops/apps/helloworld
   prune: true
   wait: true

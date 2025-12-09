@@ -9,7 +9,7 @@ metadata:
   name: hello-world-test-gateway
   namespace: hello-world
 spec:
-  gatewayClassName: example
+  gatewayClassName: nginx
   listeners:
   - protocol: HTTP
     port: 80

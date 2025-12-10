@@ -31,8 +31,9 @@ spec:
         name: ingress-nginx
         namespace: ingress-nginx
       interval: 12h
-  # values:
-  #   controller:
+  values:
+    controller:
+      enableGatewayApi: true
   #     service:
   #       type: "NodePort"
   #   admissionWebhooks:

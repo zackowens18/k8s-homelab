@@ -24,7 +24,7 @@ kind: GatewayClass
 metadata:
   name: nginx
 spec:
-  controllerName: "k8s.io/ingress-nginx"
+  controllerName: "k8s.ingress-nginx.io/gateway-controller"
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute

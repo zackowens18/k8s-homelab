@@ -20,4 +20,5 @@ helm upgrade cilium cilium/cilium --version 1.18.4 \
     --set kubeProxyReplacement=true \
     --set gatewayAPI.enabled=true \
     --set ingressController.loadbalancerMode=shared \
-    --set ingressController.enabled=true
+    --set ingressController.enabled=true \
+    --set nodeIPAM.enabled=true

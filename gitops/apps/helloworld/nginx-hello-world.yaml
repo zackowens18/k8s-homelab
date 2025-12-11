@@ -19,7 +19,7 @@ spec:
           service:
             name: foo-svc
             port:
-              number: 80
+              number: 8080
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -35,7 +35,6 @@ spec:
     metadata:
       labels:
         app: hello-nginx
-        namespace: hello-world
     spec:
       containers:
       - name: hello-nginx
@@ -54,5 +53,5 @@ spec:
     app: hello-nginx
   ports:
   - name: http
-    port: 8080        # the port referenced by HTTPRoute
-    targetPort: 80    # container port exposed by nginxdemos/hello
+    port: 8080
+    targetPort: 80

@@ -49,6 +49,7 @@ metadata:
   name: foo-svc
   namespace: hello-world
 spec:
+  ExternalTrafficPolicy: Cluster
   selector:
     app: hello-nginx
   ports:

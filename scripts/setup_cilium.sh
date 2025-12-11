@@ -2,7 +2,7 @@
 # helm must be installed to local host using KubePrism port 7445 or 6443
 # replace the CNI
 helm install cilium cilium/cilium \
-  --version 1.15.6 \
+  --version 1.18.4 \
   --namespace kube-system \
   --set ipam.mode=kubernetes \
   --set kubeProxyReplacement=true \

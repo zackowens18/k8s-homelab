@@ -13,3 +13,11 @@ helm install cilium cilium/cilium \
   --set l2announcements.enabled=true \
   --set k8sServiceHost=localhost \
   --set k8sServicePort=7445
+
+helm upgrade cilium cilium/cilium --version 1.18.4 \
+    --namespace kube-system \
+    --reuse-values \
+    --set kubeProxyReplacement=true \
+    --set gatewayAPI.enabled=true \
+    --set ingressController.loadbalancerMode=shared \
+    --set ingressController.enabled=true

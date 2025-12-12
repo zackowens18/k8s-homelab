@@ -4,7 +4,7 @@
 helm install cilium cilium/cilium \
   --version 1.18.4 \
   --namespace kube-system \
-  --set ipam.mode=kubernetes \
+  --set ipam.mode=cluster-pool \
   --set kubeProxyReplacement=true \
   --set securityContext.capabilities.ciliumAgent="{CHOWN,KILL,NET_ADMIN,NET_RAW,IPC_LOCK,SYS_ADMIN,SYS_RESOURCE,DAC_OVERRIDE,FOWNER,SETGID,SETUID}" \
   --set securityContext.capabilities.cleanCiliumState="{NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}" \
@@ -21,4 +21,7 @@ helm upgrade cilium cilium/cilium --version 1.18.4 \
     --set gatewayAPI.enabled=true \
     --set ingressController.loadbalancerMode=shared \
     --set ingressController.enabled=true \
+    --set ingressController.default=true \
+    --set ipam.mode=cluster-pool \
+    --set externalIPs.enabled=true \
     --set nodeIPAM.enabled=true

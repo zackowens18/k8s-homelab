@@ -19,7 +19,7 @@ spec:
           service:
             name: foo-svc
             port:
-              number: 8080
+              number: 80
 ---
 apiVersion: apps/v1
 kind: Deployment

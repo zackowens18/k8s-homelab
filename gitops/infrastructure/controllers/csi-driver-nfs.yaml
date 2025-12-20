@@ -1,0 +1,37 @@
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: observability
+#   labels:
+#     toolkit.fluxcd.io/tenant: mytenant
+#     pod-security.kubernetes.io/enforce: privileged
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: csi-driver-nfs-repo
+  namespace: kube-system
+spec:
+  interval: 24h
+  url: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: csi-driver-nfs-release
+  namespace: kube-system
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: "4.x"
+      sourceRef:
+        kind: HelmRepository
+        name: csi-driver-nfs-repo
+        namespace: kube-system
+      interval: 12h
+  # values:
+  #   crds:
+  #     enabled: true

@@ -41,8 +41,8 @@ spec:
         size: 5Gi
         accessMode: ReadWriteMany  # For autoscaling
         storageClass: "main-nfs"
-      autoscaling:
-        enable: true
+      # autoscaling:
+      #   enable: true
     main:
       persistence:
         enabled: true

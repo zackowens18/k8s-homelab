@@ -15,12 +15,12 @@ TODO - destroy_cluster.sh
 ## Pre requisites
 
 - A valid kubeconfig to setup a cluster on this
-- A github token
+- A github ssh key for bootstrap
 
 ## Bootstrapping
 
-Everything in the /clusters/* is auto generated using the bootsrapping below. By changing the cluster that is specified in the kubeconfig and the path, more clusters can be added to this git repo. Below is an example command that I used to create firmzcluster:
-```flux bootstrap github --token-auth --owner=zackowens18 --repository=k8s-homelab-gitops-systems --branch=main --path=clusters/firmzcluster --personal --kubeconfig C:\Users\Firmz\.kubeconfig```
+Everything in the /clusters/* is auto generated using the bootsrapping below. By changing the cluster that is specified in the kubeconfig and the path, more clusters can be added to this git repo. Below is an example command that I used to create `TalosCluster`:
+```flux bootstrap git --url=ssh://git@github.com/zackowens18/k8s-homelab.git --path=gitops/clusters/TalosCluster --kubeconfig "C:\Users\Firmz\Desktop\_GIT\k8s-homelab\cluster-setup\TalosCluster\kubeconfig"```
 
 ## Layout
 

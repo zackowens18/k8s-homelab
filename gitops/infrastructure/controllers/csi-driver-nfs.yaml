@@ -32,6 +32,6 @@ spec:
         name: csi-driver-nfs-repo
         namespace: kube-system
       interval: 12h
-  # values:
-  #   crds:
-  #     enabled: true
+  values:
+    controller:
+      runOnControlPlane: true

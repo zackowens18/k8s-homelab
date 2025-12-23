@@ -25,7 +25,7 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: kube-prometheus-stack
+      chart: csi-driver-nfs
       version: "v4.6.0"
       sourceRef:
         kind: HelmRepository

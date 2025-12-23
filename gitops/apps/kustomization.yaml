@@ -3,6 +3,6 @@
 # metadata:
 #   name: apps
 #   namespace: flux-system
-# resources:
-#   - helloworld
-#   - n8n
+resources:
+  - helloworld
+  - n8n

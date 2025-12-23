@@ -19,7 +19,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: n8n-release
-  namespace: flux-system
+  namespace: n8n
 spec:
   interval: 30m
   chart:
@@ -29,7 +29,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: n8n-repository
-        namespace: n8n
+        namespace: flux-system
       interval: 12h
   values:
     worker:

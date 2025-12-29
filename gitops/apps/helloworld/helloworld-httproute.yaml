@@ -4,8 +4,8 @@ metadata:
   name: hello-route
   namespace: hello-world
 spec:
-  # hostnames:
-  # - foo.firmz.xyz
+  hostnames:
+  - foo.firmz.xyz
   parentRefs:
   - kind: Gateway
     name: main-gateway

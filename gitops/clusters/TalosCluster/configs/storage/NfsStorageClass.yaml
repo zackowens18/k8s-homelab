@@ -6,7 +6,6 @@ provisioner: nfs.csi.k8s.io
 parameters:
   server: 192.168.0.89
   path: /mnt/WDPool/Kubernetes
-  readOnly: "false"
 reclaimPolicy: Retain
 volumeBindingMode: Immediate
 allowVolumeExpansion: true

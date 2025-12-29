@@ -11,15 +11,6 @@ metadata:
   namespace: main-gateway
 spec:
   gatewayClassName: cilium
-  
-  addresses:
-    - type: IPAddress
-      value: 192.168.0.25
-    - type: IPAddress
-      value: 192.168.0.69
-    - type: IPAddress
-      value: 192.168.0.6
-      
   listeners:
   - name: prod-web
     port: 80

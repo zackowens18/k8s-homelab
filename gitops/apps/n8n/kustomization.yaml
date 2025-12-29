@@ -1,2 +1,4 @@
 resources:
-- n8n.yaml
+- n8n-namespace.yaml
+- n8n-helmrepo.yaml
+- n8n-helmrelease.yaml

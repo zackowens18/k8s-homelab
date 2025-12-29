@@ -1,2 +1,5 @@
 resources:
-- helloworld.yaml
+- helloworld-namespace.yaml
+- helloworld-deployment.yaml
+- helloworld-service.yaml
+- helloworld-httproute.yaml

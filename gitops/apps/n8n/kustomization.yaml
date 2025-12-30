@@ -2,3 +2,4 @@ resources:
 - n8n-namespace.yaml
 - n8n-helmrepo.yaml
 - n8n-helmrelease.yaml
+- n8n-httproute.yaml

@@ -12,7 +12,7 @@ metadata:
 spec:
   gatewayClassName: cilium
   listeners:
-  - name: prod-web
+  - name: http
     port: 80
     protocol: HTTP
     allowedRoutes:
@@ -23,3 +23,20 @@ spec:
         selector:
           matchLabels:
             expose-apps: "true"
+  - name: https
+    port: 443
+    protocol: HTTPS
+    hostname: "*.firmz.xyz"
+    allowedRoutes:
+      kinds:
+      - kind: HTTPRoute
+      namespaces:
+        from: Selector
+        selector:
+          matchLabels:
+            expose-apps: "true"
+    tls: # to fix later
+      mode: Terminate
+      certificateRefs:
+      - kind: Secret
+        name: firmz-xyz-wildcard-tls

@@ -1,0 +1,4 @@
+resources:
+  - gitlab-namespace.yaml
+  - gitlab-postgres-cluster.yaml
+  - gitlab-postgres.yaml
